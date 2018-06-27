@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+
+    <EditTextPreference
+        android:defaultValue="@string/country_default"
+        android:inputType="text"
+        android:key="@string/country_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/country_label" />
+
+    <ListPreference
+        android:defaultValue="@string/date_default"
+        android:entries="@array/settings_order_by_labels"
+        android:entryValues="@array/settings_order_by_values"
+        android:key="@string/date_key"
+        android:title="@string/date_label" />
+
+</PreferenceScreen>

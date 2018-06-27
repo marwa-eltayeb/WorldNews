@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Height of each list item -->
+    <dimen name="list_item_height">88dp</dimen>
+    <!-- Text size of the title -->
+    <dimen name="textSizeOfTitle">18sp</dimen>
+    <!-- Text size of other elements -->
+    <dimen name="textSize">14sp</dimen>
+    <!-- Text size of description -->
+    <dimen name="textSizeOfDescription">16sp</dimen>
+    <!-- Margin in the top -->
+    <dimen name="marginTop">3dp</dimen>
+    <!-- Margin in the bottom -->
+    <dimen name="marginBottom">5dp</dimen>
+    <!-- General Padding -->
+    <dimen name="padding">10dp</dimen>
+    <!-- Height of the image -->
+    <dimen name="heightOfImage">180dp</dimen>
+    <!-- Text size of Tab -->
+    <dimen name="textSizeOfTab">17sp</dimen>
+    <!-- Padding inside each Tab -->
+    <dimen name="paddingOfTab">16dp</dimen>
+    <!-- Padding -->
+    <dimen name="myPadding">5dp</dimen>
+</resources>

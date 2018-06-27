@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_order_by_labels">
+        <item>@string/order_by_newest_label</item>
+        <item>@string/order_by_oldest_label</item>
+        <item>@string/order_by_relevance_label</item>
+    </string-array>
+
+    <string-array name="settings_order_by_values">
+        <item>@string/order_by_newest_value</item>
+        <item>@string/order_by_oldest_value</item>
+        <item>@string/order_by_relevance_value</item>
+    </string-array>
+</resources>
+
+
+
