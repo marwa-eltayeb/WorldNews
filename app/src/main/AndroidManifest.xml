@@ -19,9 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SettingsActivity"
-                  android:label="@string/settings_title"
-                  android:parentActivityName=".activities.MainActivity">
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/settings_title"
+            android:parentActivityName=".activities.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,6 +34,8 @@
             android:name=".data.NewsProvider"
             android:authorities="com.example.marwa.worldnews"
             android:exported="false" />
+
+        <activity android:name=".WebViewActivity"></activity>
     </application>
 
 </manifest>

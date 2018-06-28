@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
+import com.example.marwa.worldnews.WebViewActivity;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
 import com.example.marwa.worldnews.data.NewsCursorLoader;
@@ -81,20 +82,11 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current news story that was clicked on.
-                News currentNewsStory = adapter.getItem(position);
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                String url = adapter.getItem(position).getWebUrl();
+                intent.putExtra("news", url);
+                startActivity(intent);
 
-                // Convert the String URL into a URI object (to pass into the Intent constructor).
-                Uri newsUri = null;
-                if (currentNewsStory != null) {
-                    newsUri = Uri.parse(currentNewsStory.getWebUrl());
-                }
-
-                // Create a new intent to view the news story URI.
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
-
-                // Send the intent to launch a new activity.
-                startActivity(websiteIntent);
             }
         });
 
