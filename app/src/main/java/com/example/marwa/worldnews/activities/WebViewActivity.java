@@ -1,10 +1,12 @@
-package com.example.marwa.worldnews;
+package com.example.marwa.worldnews.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.example.marwa.worldnews.R;
 
 public class WebViewActivity extends AppCompatActivity {
 
