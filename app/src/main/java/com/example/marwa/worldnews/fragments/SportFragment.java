@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
-import com.example.marwa.worldnews.WebViewActivity;
+import com.example.marwa.worldnews.activities.WebViewActivity;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
 import com.example.marwa.worldnews.data.NewsCursorLoader;
