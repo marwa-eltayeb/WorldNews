@@ -53,7 +53,6 @@ public class QueryUtils {
         // Return the list of {@link News}
         return extractFeaturesFromJson(jsonResponse);
     }
-
     
     /**
      * Returns new URL object from the given string URL.
