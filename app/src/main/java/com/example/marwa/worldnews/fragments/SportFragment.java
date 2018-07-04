@@ -12,7 +12,9 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SportFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>> {
+public class SportFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener {
 
     /**
      * Adapter for the list of news stories.
@@ -51,10 +53,20 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
      */
     private ProgressBar loadingIndicator;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    LoaderManager.LoaderCallbacks<List<News>> loader = this;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.news_list, container, false);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
+
 
         // Find a reference to the {@link ListView} in the layout.
         ListView newsListView = (ListView) rootView.findViewById(R.id.newsList);
@@ -110,6 +122,20 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
                     Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(), newsCursorAdapter));
         }
 
+        /**
+         * Showing Swipe Refresh animation on activity create
+         * As animation won't start on onCreate, post runnable is used
+         */
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        //swipeRefreshLayout.setRefreshing(true);
+                                        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, loader);
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                }
+        );
+
         return rootView;
     }
 
@@ -155,12 +181,15 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         //Hide the indicator after the data is appeared
         loadingIndicator.setVisibility(View.GONE);
+        // Hide refresh animation
+        swipeRefreshLayout.setRefreshing(false);
 
         // Check if connection is still available, otherwise show appropriate message
         if (networkInfo != null && networkInfo.isConnected()) {
             // If there is a valid list of news stories, then add them to the adapter's
             // data set. This will trigger the ListView to update.
             if (data != null && !data.isEmpty()) {
+                adapter.clear();
                 adapter.addAll(data);
             } else {
                 emptyStateTextView.setVisibility(View.VISIBLE);
@@ -182,6 +211,14 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //Restart the loader when we get back to the MainActivity
+        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+    }
+
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
+    public void onRefresh() {
         getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
     }
 
