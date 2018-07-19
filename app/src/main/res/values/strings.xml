@@ -59,6 +59,10 @@
     <string name="date_label">Order By</string>
     <string name="date_key" translatable="false">order</string>
     <string name="date_default" translatable="false">newest</string>
+    <string name="login">login</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">sUcO42fghjPaYHnSuXKEFUgAa</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">Ua33SS9ewEKl5YatLUnP5hDyp8R9isnT2iiVOrZBdk7CbfczLr</string>
 </resources>
 
 
