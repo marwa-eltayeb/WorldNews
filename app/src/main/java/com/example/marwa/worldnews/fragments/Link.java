@@ -17,7 +17,6 @@ class Link {
     // Parameters and values
     final static String PARAM_QUERY = "q";
     final static String PARAM_SECTION = "section";
-    final static String LIFE_AND_STYLE = "lifeandstyle";
     final static String PARAM_SHOW_TAGS = "show-tags";
     final static String PARAM_ORDER_BY = "order-by";
     final static String PIC_DIS = "thumbnail,trailText";
@@ -33,4 +32,5 @@ class Link {
     final static String SPORT = "sport";
     final static String CULTURE = "culture";
     final static String TECHNOLOGY = "technology";
+    final static String LIFE_AND_STYLE = "lifeandstyle";
 }
