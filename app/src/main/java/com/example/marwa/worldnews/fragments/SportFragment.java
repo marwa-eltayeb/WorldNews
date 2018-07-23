@@ -119,7 +119,7 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
             newsListView.setAdapter(newsCursorAdapter);
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
-                    Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(), newsCursorAdapter));
+                    Link.SPORT_LOADER_ID, null, new NewsCursorLoader(getContext(),Link.SPORTJ, newsCursorAdapter));
         }
 
         /**

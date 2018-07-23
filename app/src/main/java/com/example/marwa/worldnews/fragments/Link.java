@@ -12,6 +12,10 @@ class Link {
      * Constant value for the NEWS loader ID.
      */
     final static int NEWS_LOADER_ID = 1;
+    final static int SPORT_LOADER_ID = 2;
+    final static int CULTURE_LOADER_ID = 3;
+    final static int TECHNOLOGY_LOADER_ID = 4;
+    final static int LIFE_AND_STYLE_LOADER_ID = 5;
 
 
     // Parameters and values
@@ -33,4 +37,12 @@ class Link {
     final static String CULTURE = "culture";
     final static String TECHNOLOGY = "technology";
     final static String LIFE_AND_STYLE = "lifeandstyle";
+
+    //Json
+    final static String SPORTJ = "Sport";
+    final static String NEWSJ = "World news";
+    final static String CULTUREJ = "Culture";
+    final static String TECHNOLOGYJ = "Technology";
+    final static String LIFE_AND_STYLEJ = "Life and style";
+
 }

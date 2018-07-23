@@ -120,7 +120,7 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
             newsListView.setAdapter(newsCursorAdapter);
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
-                    Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(), newsCursorAdapter));
+                    Link.CULTURE_LOADER_ID, null, new NewsCursorLoader(getContext(), Link.CULTUREJ, newsCursorAdapter));
         }
 
         /**

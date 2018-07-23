@@ -120,7 +120,7 @@ public class TechnologyFragment extends Fragment implements LoaderManager.Loader
             newsListView.setAdapter(newsCursorAdapter);
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
-                    Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(), newsCursorAdapter));
+                    Link.TECHNOLOGY_LOADER_ID, null, new NewsCursorLoader(getContext(),Link.TECHNOLOGYJ, newsCursorAdapter));
         }
 
         /**

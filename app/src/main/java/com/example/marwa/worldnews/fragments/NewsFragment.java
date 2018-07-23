@@ -122,7 +122,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             newsListView.setAdapter(newsCursorAdapter);
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
-                    Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(), newsCursorAdapter));
+                    Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(),Link.NEWSJ, newsCursorAdapter));
         }
 
         /**

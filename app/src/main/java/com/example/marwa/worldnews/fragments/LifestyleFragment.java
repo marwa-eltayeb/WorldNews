@@ -120,7 +120,7 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
             newsListView.setAdapter(newsCursorAdapter);
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
-                    Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(), newsCursorAdapter));
+                    Link.LIFE_AND_STYLE_LOADER_ID, null, new NewsCursorLoader(getContext(),Link.LIFE_AND_STYLEJ, newsCursorAdapter));
         }
 
         /**

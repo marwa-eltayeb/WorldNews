@@ -19,10 +19,12 @@ public class NewsCursorLoader implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Context context;
     private NewsCursorAdapter newsCursorAdapter;
+    private String section;
 
-    public NewsCursorLoader(Context context, NewsCursorAdapter newsCursorAdapter) {
+    public NewsCursorLoader(Context context,String section,NewsCursorAdapter newsCursorAdapter) {
         this.context = context;
         this.newsCursorAdapter = newsCursorAdapter;
+        this.section = section;
     }
 
     @Override
@@ -35,12 +37,18 @@ public class NewsCursorLoader implements LoaderManager.LoaderCallbacks<Cursor> {
                 NewsEntry.COLUMN_NEWS_AUTHOR,
                 NewsEntry.COLUMN_NEWS_DESC,
         };
+
+
+        String selection = NewsEntry.COLUMN_NEWS_SECTION + "=?";
+        String[] selectionArgs = new String[]{section};
         return new CursorLoader(context,
                 NewsEntry.CONTENT_URI,
                 projection,
-                null,
-                null,
+                selection,
+                selectionArgs,
                 null);
+
+
     }
 
     @Override
