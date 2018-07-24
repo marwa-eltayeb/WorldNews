@@ -1,68 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/padding">
-
-    <TextView
-        android:id="@+id/title_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorOfTitle"
-        android:textSize="@dimen/textSizeOfTitle"
-        tools:text="@string/title" />
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:elevation="0dp"
+    card_view:cardElevation="6dp"
+    card_view:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding"
+        android:orientation="vertical">
+
 
         <TextView
-            android:id="@+id/section_text_view"
-            style="@style/section"
-            tools:text="@string/section" />
+                android:id="@+id/title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorOfTitle"
+                android:textSize="@dimen/textSizeOfTitle"
+                tools:text="@string/title" />
 
-        <TextView
-            android:id="@+id/publicationDate_text_view"
-            style="@style/date"
-            tools:text="@string/date" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/section_text_view"
+                    style="@style/section"
+                    tools:text="@string/section" />
+
+                <TextView
+                    android:id="@+id/publicationDate_text_view"
+                    style="@style/date"
+                    tools:text="@string/date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/authorName_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/marginBottom"
+                    android:textColor="#666"
+                    android:textSize="@dimen/textSize"
+                    android:textStyle="italic|bold"
+                    tools:text="@string/autherName" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/imageOfNewsArticle_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/heightOfImage"
+                android:contentDescription="@string/description_of_the_news"
+                android:scaleType="fitXY"
+                tools:src="@drawable/football" />
+
+
+            <TextView
+                android:id="@+id/description_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop"
+                android:textSize="@dimen/textSizeOfDescription"
+                tools:text="@string/description" />
+
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/authorName_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/marginBottom"
-            android:textSize="@dimen/textSize"
-            android:textStyle="italic|bold"
-            android:textColor="#666"
-            tools:text="@string/autherName" />
-    </LinearLayout>
-
-
-    <ImageView
-        android:id="@+id/imageOfNewsArticle_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/heightOfImage"
-        android:contentDescription="@string/description_of_the_news"
-        android:scaleType="fitXY"
-        tools:src="@drawable/football" />
-
-
-    <TextView
-        android:id="@+id/description_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:textSize="@dimen/textSizeOfDescription"
-        tools:text="@string/description" />
-</LinearLayout>
+</android.support.v7.widget.CardView>
 
 
