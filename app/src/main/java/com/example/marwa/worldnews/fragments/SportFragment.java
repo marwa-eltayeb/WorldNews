@@ -173,7 +173,7 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
         uriBuilder.appendQueryParameter(Link.PARAM_API_KEY, Link.KEY);
 
         // Return the completed uri
-        return new NewsLoader(getContext(), uriBuilder.toString());
+        return new NewsLoader(getContext(), uriBuilder.toString() , Link.SPORTJ);
 
     }
 

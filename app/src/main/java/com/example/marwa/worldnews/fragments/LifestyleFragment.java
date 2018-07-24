@@ -174,7 +174,7 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
         uriBuilder.appendQueryParameter(Link.PARAM_API_KEY, Link.KEY);
 
         // Return the completed uri
-        return new NewsLoader(getContext(), uriBuilder.toString());
+        return new NewsLoader(getContext(), uriBuilder.toString(), Link.LIFE_AND_STYLEJ);
 
     }
 

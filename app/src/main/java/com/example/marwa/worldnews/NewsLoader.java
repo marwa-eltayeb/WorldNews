@@ -21,15 +21,18 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
      */
     private String url;
 
+    private String section;
+
     /**
      * Constructs a new {@link NewsLoader}.
      *
      * @param context of the activity
      * @param url     to load data from
      */
-    public NewsLoader(Context context, String url) {
+    public NewsLoader(Context context, String url, String section) {
         super(context);
         this.url = url;
+        this.section = section;
     }
 
     /**
@@ -56,7 +59,8 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
         //Log.i("InsertBulkNews" , " list size is : "+news.size() );
 
-        if(news != null){
+        if(news!= null){
+            deleteNews();
             insertBulkNews(news);
         }else {
             Log.i("InsertBulkNews","News is null");
@@ -66,6 +70,7 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
     }
 
     private void insertBulkNews(List<News> newsList) {
+        Log.v("INSERT","Insert Method Run");
         List<ContentValues> newsValues = new ArrayList<>();
         for (int i = 0; i < newsList.size(); i++)
         {
@@ -79,6 +84,16 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
     }
 
 
+    // Delete the old news stories
+    private void deleteNews() {
+        Log.v("DELETE","Delete Method Run");
+        String selection = NewsEntry.COLUMN_NEWS_SECTION + "=?";
+        String[] selectionArgs = new String[]{section};
+        getContext().getContentResolver().delete(NewsEntry.CONTENT_URI,selection,selectionArgs);
+    }
+
+
+    // Insert new news stories inside the database
     private ContentValues createNewsContentValues(News news) {
         String news_title = news.getTitle();
         String news_section = news.getSection();

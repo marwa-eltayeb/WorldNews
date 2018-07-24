@@ -178,7 +178,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         uriBuilder.appendQueryParameter(Link.PARAM_API_KEY, Link.KEY);
 
         // Return the completed uri
-        return new NewsLoader(getContext(), uriBuilder.toString());
+        return new NewsLoader(getContext(), uriBuilder.toString(), Link.NEWSJ);
 
     }
 

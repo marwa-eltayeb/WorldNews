@@ -174,7 +174,7 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
         uriBuilder.appendQueryParameter(Link.PARAM_API_KEY, Link.KEY);
 
         // Return the completed uri
-        return new NewsLoader(getContext(), uriBuilder.toString());
+        return new NewsLoader(getContext(), uriBuilder.toString() , Link.CULTUREJ);
 
     }
 

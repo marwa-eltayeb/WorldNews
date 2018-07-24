@@ -174,7 +174,7 @@ public class TechnologyFragment extends Fragment implements LoaderManager.Loader
         uriBuilder.appendQueryParameter(Link.PARAM_API_KEY, Link.KEY);
 
         // Return the completed uri
-        return new NewsLoader(getContext(), uriBuilder.toString());
+        return new NewsLoader(getContext(), uriBuilder.toString(), Link.TECHNOLOGYJ);
 
     }
 
