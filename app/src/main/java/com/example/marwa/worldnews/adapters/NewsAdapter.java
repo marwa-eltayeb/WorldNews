@@ -81,7 +81,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         description.setText(currentNewsArticle.getShortDescription());
 
         // Find the ImageView in the list_item.xml layout with the ID image.
-        ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageOfNewsArticle_text_view);
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageOfNewsArticle_image_view);
         // Put the image resource in a String Variable.
         String imageUrl = currentNewsArticle.getImageResource();
 
@@ -98,7 +98,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
     }
 
     // Format the date received from guardian JSON
-    private static String formatDate(String currentDate) {
+    static String formatDate(String currentDate) {
         // This is the time format from guardian JSON "2017-10-29T06:00:20Z"
         // will be changed to 29-10-2017 8pm format
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");

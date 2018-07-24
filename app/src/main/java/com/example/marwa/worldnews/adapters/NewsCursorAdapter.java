@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.marwa.worldnews.R;
@@ -77,13 +78,22 @@ public class NewsCursorAdapter extends CursorAdapter {
         String newsAuthor = cursor.getString(authorColumnIndex);
         String newsDesc = cursor.getString(descriptionColumnIndex);
 
+        String formattedDate = NewsAdapter.formatDate(newsDate);
+
+        if (newsAuthor.equals("")) {
+            newsAuthor = context.getResources().getString(R.string.unnamed);
+        }
 
         // Update the TextViews with the attributes for the current news
         title.setText(newsTitle);
         section.setText(newsSection);
-        date.setText(newsDate);
+        date.setText(formattedDate);
         author.setText(newsAuthor);
         description.setText(newsDesc);
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageOfNewsArticle_image_view);
+        imageView.setVisibility(View.GONE);
+
 
     }
 

@@ -41,12 +41,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/marginBottom"
             android:textSize="@dimen/textSize"
+            android:textStyle="italic|bold"
+            android:textColor="#666"
             tools:text="@string/autherName" />
     </LinearLayout>
 
 
     <ImageView
-        android:id="@+id/imageOfNewsArticle_text_view"
+        android:id="@+id/imageOfNewsArticle_image_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightOfImage"
         android:contentDescription="@string/description_of_the_news"
