@@ -1,23 +1,23 @@
 package com.example.marwa.worldnews.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.R;
+import com.example.marwa.worldnews.Utility;
+import com.example.marwa.worldnews.activities.WebViewActivity;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Marwa on 1/22/2018.
@@ -37,7 +37,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
 
         // Check if there is an existing list item view{called convertView} that we can
         // reuse, otherwise, if convertView is null, then inflate a new list item layout
@@ -62,7 +62,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Find the TextView with view ID publication Date.
         TextView publicationDate = (TextView) listItemView.findViewById(R.id.publicationDate_text_view);
         // Format the date string.
-        String formattedDate = formatDate(currentNewsArticle.getPublicationDate());
+        String formattedDate = Utility.formatDate(currentNewsArticle.getPublicationDate());
         // Display the date of the current News story in that TextView.
         publicationDate.setText(formattedDate);
 
@@ -83,7 +83,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Find the ImageView in the list_item.xml layout with the ID image.
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.imageOfNewsArticle_image_view);
         // Put the image resource in a String Variable.
-        String imageUrl = currentNewsArticle.getImageResource();
+        final String imageUrl = currentNewsArticle.getImageResource();
 
         // Check if an image is provided for this news story or not
         if (currentNewsArticle.hasImage()) {
@@ -94,23 +94,32 @@ public class NewsAdapter extends ArrayAdapter<News> {
             imageView.setImageResource(R.drawable.news);
         }
 
+        // Share the news story
+        ImageButton share = (ImageButton) listItemView.findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.shareNewsStory(getContext(),imageUrl);
+            }
+        });
+
+        // Set an item click listener on the CardView, which sends an intent to a Web Activity
+        // to open a website with more information about the selected news story.
+        android.support.v7.widget.CardView parentView = (android.support.v7.widget.CardView) listItemView.findViewById(R.id.card_view);
+        parentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                String url = getItem(position).getWebUrl();
+                intent.putExtra("news", url);
+                getContext().startActivity(intent);
+            }
+        });
+
+
         return listItemView;
     }
 
-    // Format the date received from guardian JSON
-    static String formatDate(String currentDate) {
-        // This is the time format from guardian JSON "2017-10-29T06:00:20Z"
-        // will be changed to 29-10-2017 8pm format
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        try {
-            Date newDate = format.parse(currentDate);
-            format = new SimpleDateFormat("dd-MM-yyyy, h:mm a");
-            currentDate = format.format(newDate);
-        } catch (ParseException e) {
-            Log.e("Adapter", "Problem with parsing the date format");
-        }
-        return currentDate;
-    }
 
 
 

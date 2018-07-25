@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.marwa.worldnews.R;
+import com.example.marwa.worldnews.Utility;
 import com.example.marwa.worldnews.data.NewsContract.NewsEntry;
 
 /**
@@ -17,6 +20,8 @@ import com.example.marwa.worldnews.data.NewsContract.NewsEntry;
  */
 
 public class NewsCursorAdapter extends CursorAdapter {
+
+    private Toast mToast;
 
     /**
      * Constructs a new {@link NewsCursorAdapter}.
@@ -53,7 +58,7 @@ public class NewsCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(final View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
         TextView title = (TextView) view.findViewById(R.id.title_text_view);
         TextView section = (TextView) view.findViewById(R.id.section_text_view);
@@ -78,7 +83,7 @@ public class NewsCursorAdapter extends CursorAdapter {
         String newsAuthor = cursor.getString(authorColumnIndex);
         String newsDesc = cursor.getString(descriptionColumnIndex);
 
-        String formattedDate = NewsAdapter.formatDate(newsDate);
+        String formattedDate = Utility.formatDate(newsDate);
 
         if (newsAuthor.equals("")) {
             newsAuthor = context.getResources().getString(R.string.unnamed);
@@ -93,6 +98,18 @@ public class NewsCursorAdapter extends CursorAdapter {
 
         ImageView imageView = (ImageView) view.findViewById(R.id.imageOfNewsArticle_image_view);
         imageView.setVisibility(View.GONE);
+
+
+        // Share the news story
+        ImageButton share = (ImageButton) view.findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mToast != null) mToast.cancel();
+                mToast = Toast.makeText(view.getContext(), "No Internet Connect. Please Check it and try again later", Toast.LENGTH_SHORT);
+                mToast.show();
+            }
+        });
 
 
     }
