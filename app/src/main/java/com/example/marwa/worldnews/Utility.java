@@ -17,11 +17,11 @@ public class Utility {
     /**
      * Share the news story.
      */
-    public static void shareNewsStory(Context context, String url){
+    public static void shareNewsStory(Context context, String url) {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, url);
-        context.startActivity(Intent.createChooser(sharingIntent,"Share using"));
+        context.startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 
 
