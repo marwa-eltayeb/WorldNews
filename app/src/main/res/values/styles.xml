@@ -45,13 +45,13 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/marginBottom</item>
-        <item name="android:layout_weight">.8</item>
+        <item name="android:layout_weight">.7</item>
         <item name="android:textSize">@dimen/textSize</item>
     </style>
 
     <!-- Style for date -->
     <style name="date" parent="section">
-        <item name="android:layout_weight">1.2</item>
+        <item name="android:layout_weight">1.3</item>
         <item name="android:gravity">end</item>
     </style>
 
