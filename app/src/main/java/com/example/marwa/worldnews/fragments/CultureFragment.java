@@ -2,7 +2,6 @@ package com.example.marwa.worldnews.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,7 +17,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,7 +24,6 @@ import android.widget.TextView;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
-import com.example.marwa.worldnews.activities.WebViewActivity;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
 import com.example.marwa.worldnews.data.NewsCursorLoader;
@@ -85,18 +82,6 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
 
         // Set the adapter on the {@link ListView}.
         newsListView.setAdapter(adapter);
-
-        // Set an item click listener on the ListView, which sends an intent to a web browser
-        // to open a website with more information about the selected news story.
-        newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                String url = adapter.getItem(position).getWebUrl();
-                intent.putExtra("news", url);
-                startActivity(intent);
-            }
-        });
 
         // Get a reference to the ConnectivityManager to check state of network connectivity.
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
