@@ -13,6 +13,7 @@ import android.view.WindowManager;
 
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.CategoryAdapter;
+import com.example.marwa.worldnews.service.ReminderUtilities;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Connect the tab layout with the view pager.
         tabLayout.setupWithViewPager(viewPager);
+
+        // Schedule the charging reminder  جدوله
+        ReminderUtilities.scheduleReadingNewsReminder(this);
 
         // If we want to change the mode after rotation.
         DisplayMetrics metrics = new DisplayMetrics();
@@ -74,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(settingsIntent);
             return true;
         }
+
+        if (id == R.id.test) {
+            //NotificationUtils.remindUserAboutReadingNews(this);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
