@@ -63,6 +63,12 @@
 
     <string name="com.twitter.sdk.android.CONSUMER_KEY">sUcO42fghjPaYHnSuXKEFUgAa</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">Ua33SS9ewEKl5YatLUnP5hDyp8R9isnT2iiVOrZBdk7CbfczLr</string>
+    <string name="share">Share</string>
+    <string name="sharenewsstory">shareNewsStory</string>
+
+
+    <string name="charging_reminder_notification_title">Device Charging - Where\'s that water?</string>
+    <string name="charging_reminder_notification_body">There\'s never a better time to drink water than when you know your phone is charging. Drink up!</string>
 </resources>
 
 
