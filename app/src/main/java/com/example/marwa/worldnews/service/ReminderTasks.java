@@ -21,6 +21,7 @@ public class ReminderTasks {
     public static void executeTask(Context context, String action) {
         if (ACTION_READ_NEWS_STORY.equals(action)) {
             Intent intent = new Intent(context, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             NotificationUtils.clearAllNotifications(context);
         }else if(ACTION_DISMISS_NOTIFICATION.equals(action)){
