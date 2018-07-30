@@ -15,7 +15,6 @@ import android.view.WindowManager;
 
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.CategoryAdapter;
-import com.example.marwa.worldnews.notifications.NotificationUtils;
 import com.example.marwa.worldnews.service.ReminderUtilities;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -94,12 +93,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             startActivity(settingsIntent);
             return true;
         }
-
-        if (id == R.id.test) {
-            NotificationUtils.remindUserAboutReadingNews(this);
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
