@@ -2,10 +2,12 @@ package com.example.marwa.worldnews.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,9 +15,10 @@ import android.view.WindowManager;
 
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.CategoryAdapter;
+import com.example.marwa.worldnews.notifications.NotificationUtils;
 import com.example.marwa.worldnews.service.ReminderUtilities;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,21 @@ public class MainActivity extends AppCompatActivity {
         // Connect the tab layout with the view pager.
         tabLayout.setupWithViewPager(viewPager);
 
-        // Schedule the charging reminder  جدوله
-        ReminderUtilities.scheduleReadingNewsReminder(this);
+
+        /*
+        // Get all of the values from shared preferences to set it up
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean notification = sharedPrefs.getBoolean(getString(R.string.notification_key),
+                getResources().getBoolean(R.bool.notification_default));
+        if (notification) {
+            // Schedule the charging reminder
+            ReminderUtilities.scheduleReadingNewsReminder(this);
+        } else {
+            ReminderUtilities.unSchedule();
+        }
+        */
+        setupNotification();
+
 
         // If we want to change the mode after rotation.
         DisplayMetrics metrics = new DisplayMetrics();
@@ -80,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.test) {
-            //NotificationUtils.remindUserAboutReadingNews(this);
+            NotificationUtils.remindUserAboutReadingNews(this);
             return true;
         }
 
@@ -88,11 +104,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
         // Disable going back to the loginActivity
         moveTaskToBack(true);
+    }
+
+    private void setupNotification() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean notification = sharedPrefs.getBoolean(getString(R.string.notification_key),
+                getResources().getBoolean(R.bool.notification_default));
+        if (notification) {
+            // Schedule the notification reminder
+            ReminderUtilities.scheduleReadingNewsReminder(this);
+        } else {
+            ReminderUtilities.unSchedule();
+        }
+        // Register the listener
+        sharedPrefs.registerOnSharedPreferenceChangeListener(this);
+    }
+
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.notification_key))) {
+            setupNotification();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks.
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
 
