@@ -28,7 +28,7 @@ public class ReminderUtilities {
 
     private static boolean sInitialized;
 
-
+    private static FirebaseJobDispatcher dispatcher;
 
     synchronized public static void scheduleReadingNewsReminder(@NonNull final Context context) {
 
@@ -38,7 +38,7 @@ public class ReminderUtilities {
         // Create a new GooglePlayDriver
         Driver driver = new GooglePlayDriver(context);
         // Create a new FirebaseJobDispatcher with the driver
-        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+        dispatcher = new FirebaseJobDispatcher(driver);
 
 
         /* Create the Job to periodically create reminders to drink water */
@@ -76,6 +76,13 @@ public class ReminderUtilities {
         // Set sInitialized to true to mark that we're done setting up the job
         /* The job has been initialized */
         sInitialized = true;
+    }
+
+    public static void unSchedule(){
+        if(dispatcher != null){
+            dispatcher.cancelAll();
+            sInitialized = false;
+        }
     }
 
 

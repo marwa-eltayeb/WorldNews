@@ -49,7 +49,6 @@
     <string name="order_by_oldest_value" translatable="false">oldest</string>
     <string name="order_by_relevance_value" translatable="false">relevance</string>
 
-
     <!-- Strings For Countries Preference -->
     <string name="country_label">Countries</string>
     <string name="country_key" translatable="false">country</string>
@@ -59,16 +58,27 @@
     <string name="date_label">Order By</string>
     <string name="date_key" translatable="false">order</string>
     <string name="date_default" translatable="false">newest</string>
+
+    <!-- Strings For Notification Preference -->
+    <!-- Label for the show notification checkbox preference -->
+    <string name="notification_label">Notification</string>
+    <!-- Key name for storing notification in SharedPreferences -->
+    <string name="notification_key" translatable="false">show_notification</string>
+    <!-- Summary for Checkboxes -->
+    <string name="pref_show_true">Enabled</string>
+    <string name="pref_show_false">Disabled</string>
+
     <string name="login">login</string>
 
     <string name="com.twitter.sdk.android.CONSUMER_KEY">sUcO42fghjPaYHnSuXKEFUgAa</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">Ua33SS9ewEKl5YatLUnP5hDyp8R9isnT2iiVOrZBdk7CbfczLr</string>
+
     <string name="share">Share</string>
     <string name="sharenewsstory">shareNewsStory</string>
 
-
     <string name="charging_reminder_notification_title">Device Charging - Where\'s that water?</string>
     <string name="charging_reminder_notification_body">There\'s never a better time to drink water than when you know your phone is charging. Drink up!</string>
+
 </resources>
 
 
