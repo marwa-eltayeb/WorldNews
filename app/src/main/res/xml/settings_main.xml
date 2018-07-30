@@ -16,4 +16,11 @@
         android:key="@string/date_key"
         android:title="@string/date_label" />
 
+    <CheckBoxPreference
+        android:defaultValue="@bool/notification_default"
+        android:key="@string/notification_key"
+        android:summaryOff="@string/pref_show_false"
+        android:summaryOn="@string/pref_show_true"
+        android:title="@string/notification_label" />
+
 </PreferenceScreen>
