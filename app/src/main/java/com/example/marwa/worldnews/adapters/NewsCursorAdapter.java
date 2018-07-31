@@ -2,6 +2,7 @@ package com.example.marwa.worldnews.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.Utility;
 import com.example.marwa.worldnews.data.NewsContract.NewsEntry;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Marwa on 5/7/2018.
@@ -44,7 +48,7 @@ public class NewsCursorAdapter extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.news_list_item,parent,false);
+        return LayoutInflater.from(context).inflate(R.layout.news_list_item, parent, false);
     }
 
     /**
@@ -58,7 +62,7 @@ public class NewsCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(final View view, Context context, Cursor cursor) {
+    public void bindView(final View view, final Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
         TextView title = (TextView) view.findViewById(R.id.title_text_view);
         TextView section = (TextView) view.findViewById(R.id.section_text_view);
@@ -100,13 +104,37 @@ public class NewsCursorAdapter extends CursorAdapter {
         imageView.setVisibility(View.GONE);
 
 
+        android.support.v7.widget.CardView parentView = (android.support.v7.widget.CardView) view.findViewById(R.id.card_view);
+        parentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("No Internet Connect. Please Check it and try again later");
+
+                // Create and show the AlertDialog
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                final Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    public void run() {
+                        alertDialog.dismiss();
+                        timer.cancel(); // This will cancel the timer of the system
+                    }
+                }, 2000); // the timer will count 2 seconds....
+            }
+        });
+
+
+
+
         // Share the news story
         ImageButton share = (ImageButton) view.findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mToast != null) mToast.cancel();
-                mToast = Toast.makeText(view.getContext(), "No Internet Connect. Please Check it and try again later", Toast.LENGTH_SHORT);
+                mToast = Toast.makeText(view.getContext(), "No Internet Connect.", Toast.LENGTH_SHORT);
                 mToast.show();
             }
         });
