@@ -108,7 +108,7 @@ public class NewsCursorAdapter extends CursorAdapter {
         parentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
                 builder.setMessage("No Internet Connect. Please Check it and try again later");
 
                 // Create and show the AlertDialog
