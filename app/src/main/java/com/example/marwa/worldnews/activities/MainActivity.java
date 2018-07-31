@@ -40,20 +40,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         tabLayout.setupWithViewPager(viewPager);
 
 
-        /*
-        // Get all of the values from shared preferences to set it up
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean notification = sharedPrefs.getBoolean(getString(R.string.notification_key),
-                getResources().getBoolean(R.bool.notification_default));
-        if (notification) {
-            // Schedule the charging reminder
-            ReminderUtilities.scheduleReadingNewsReminder(this);
-        } else {
-            ReminderUtilities.unSchedule();
-        }
-        */
+        // Show of turn off notifications
         setupNotification();
-
 
         // If we want to change the mode after rotation.
         DisplayMetrics metrics = new DisplayMetrics();
@@ -133,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
+
 
 
 }
