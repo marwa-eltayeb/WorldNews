@@ -95,7 +95,7 @@ public class NotificationUtils {
                 ignoreReminderIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
         // Create an Action for the user to ignore the notification (and dismiss it)
-        NotificationCompat.Action ignoreReminderAction = new NotificationCompat.Action(R.drawable.ic_cancel_black_24px,
+        NotificationCompat.Action ignoreReminderAction = new NotificationCompat.Action(R.drawable.ic_cancel,
                 "cancel",
                 ignoreReminderPendingIntent);
         // Return the action
