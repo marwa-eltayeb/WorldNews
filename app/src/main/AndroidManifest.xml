@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Add the VIBRATE permission -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -17,8 +18,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:launchMode="singleTop">
-        </activity>
+            android:launchMode="singleTop"></activity>
 
         <activity
             android:name=".activities.SettingsActivity"
@@ -49,16 +49,23 @@
         <!--This is required for immediate syncs -->
         <service
             android:name=".service.NewsReminderService"
-            android:exported="false"/>
+            android:exported="false" />
 
         <!-- Add the WaterReminderFirebaseJobService. -->
         <service
             android:name=".service.NewsReminderFirebaseJobService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+
+        <receiver android:name=".receiver.RebootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
