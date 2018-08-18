@@ -130,7 +130,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     // onCreateLoader instantiates and returns a new Loader for the given ID
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        emptyStateTextView.setVisibility(View.INVISIBLE);
         // First, Show loading indicator.
         loadingIndicator.setVisibility(View.VISIBLE);
 

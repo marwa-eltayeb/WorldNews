@@ -128,8 +128,7 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
     // onCreateLoader instantiates and returns a new Loader for the given ID
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        emptyStateTextView.setVisibility(View.INVISIBLE);
-        // First, hide loading indicator.
+        // First, Show loading indicator.
         loadingIndicator.setVisibility(View.VISIBLE);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
