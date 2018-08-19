@@ -22,7 +22,7 @@ public class ReminderUtilities {
 
     private static final int REMINDER_INTERVAL_HOURS = 24;
     private static final int REMINDER_INTERVAL_SECONDS = (int) (TimeUnit.HOURS.toSeconds(REMINDER_INTERVAL_HOURS));
-    //private static final int SYNC_FLEXTIME_SECONDS = REMINDER_INTERVAL_SECONDS;
+    
 
     private static final String REMINDER_JOB_TAG = "read_news_tag";
 
@@ -58,7 +58,7 @@ public class ReminderUtilities {
                  */
                 .setRecurring(true)
                 /** make a window of execution */
-                .setTrigger(Trigger.executionWindow(59, 60))
+                .setTrigger(Trigger.executionWindow(59, REMINDER_INTERVAL_SECONDS))
                 /*
                  * If a Job with the tag with provided already exists, this new job will replace
                  * the old one.
