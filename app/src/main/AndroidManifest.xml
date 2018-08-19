@@ -18,8 +18,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:launchMode="singleTop">
-        </activity>
+            android:launchMode="singleTop"></activity>
 
         <activity
             android:name=".activities.SettingsActivity"
@@ -37,13 +36,14 @@
             android:authorities="com.example.marwa.worldnews"
             android:exported="false" />
 
-        <activity android:name=".activities.WebViewActivity"
+        <activity
+            android:name=".activities.WebViewActivity"
             android:parentActivityName=".activities.MainActivity">
 
-        <!-- Parent activity meta-data to support 4.0 and lower -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activities.MainActivity" />
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
         </activity>
 
         <activity android:name=".activities.LoginActivity">
