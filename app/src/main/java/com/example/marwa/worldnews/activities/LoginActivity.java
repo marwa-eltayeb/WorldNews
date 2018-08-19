@@ -30,11 +30,9 @@ public class LoginActivity extends AppCompatActivity {
         Twitter.initialize(this);
         setContentView(R.layout.activity_login);
 
-
         //Instantiating loginButton
         loginButton = (TwitterLoginButton) findViewById(R.id.login_button);
         loginButton.setBackgroundColor(Color.RED);
-
 
           /*
           Adding a callback to loginButton
@@ -49,9 +47,6 @@ public class LoginActivity extends AppCompatActivity {
                  */
                 TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
                 TwitterAuthToken authToken = session.getAuthToken();
-                String token = authToken.token;
-                String secret = authToken.secret;
-
 
                 // Calling login method and passing twitter session
                 login(session);
@@ -76,12 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         }catch (NullPointerException e){
             Log.v("LoginActivity","No Username");
         }
-
-
-
-
     }
-
 
     /**
      * @param session
@@ -94,8 +84,6 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("username", username);
         startActivity(intent);
     }
-
-
 
     /**
      * @param requestCode - we'll set it to REQUEST_CAMERA
