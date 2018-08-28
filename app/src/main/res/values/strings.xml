@@ -76,8 +76,8 @@
     <string name="share">Share</string>
     <string name="sharenewsstory">shareNewsStory</string>
 
-    <string name="charging_reminder_notification_title">Device Charging - Where\'s that water?</string>
-    <string name="charging_reminder_notification_body">There\'s never a better time to drink water than when you know your phone is charging. Drink up!</string>
+    <string name="charging_reminder_notification_title">Breaking News</string>
+    <string name="charging_reminder_notification_body">The latest top news stories in world news. Read them as they happen around the world. Enjoy!</string>
 
 </resources>
 
