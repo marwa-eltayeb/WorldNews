@@ -5,7 +5,7 @@
 - They recieve notifications daliy about the breaking news. Moreover, they can turn it off
 - Ablity to read news about any country they want.
 
-## Projects includes:
+## Project includes:
 - Service, Content Provider.
 - Broadcast receiver.
 - Login with Twitter
