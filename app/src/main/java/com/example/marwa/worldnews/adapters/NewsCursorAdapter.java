@@ -134,7 +134,7 @@ public class NewsCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 if (mToast != null) mToast.cancel();
-                mToast = Toast.makeText(view.getContext(), "No Internet Connect.", Toast.LENGTH_SHORT);
+                mToast = Toast.makeText(view.getContext(), "No Internet Connect. Please Check it and try again later.", Toast.LENGTH_SHORT);
                 mToast.show();
             }
         });
