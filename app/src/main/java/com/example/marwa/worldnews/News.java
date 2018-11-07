@@ -47,7 +47,7 @@ public class News {
      * @param shortDescription is Short Description of the News story
      * @param webUrl           is website URL of the News stories
      */
-    News(String title, String section, String publicationDate, String authorName, String imageResource, String shortDescription, String webUrl) {
+    public News(String title, String section, String publicationDate, String authorName, String imageResource, String shortDescription, String webUrl) {
         this.title = title;
         this.section = section;
         this.publicationDate = publicationDate;
@@ -55,6 +55,11 @@ public class News {
         this.imageResource = imageResource;
         this.shortDescription = shortDescription;
         this.webUrl = webUrl;
+    }
+
+    @Override
+    public String toString() {
+        return this.title;
     }
 
     /**
