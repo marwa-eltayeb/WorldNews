@@ -1,6 +1,7 @@
 package com.example.marwa.worldnews.fragments;
 
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -14,7 +15,13 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -30,6 +37,8 @@ import com.example.marwa.worldnews.data.NewsCursorLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -55,6 +64,9 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     private SwipeRefreshLayout swipeRefreshLayout;
 
     LoaderManager.LoaderCallbacks<List<News>> loader = this;
+
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +94,8 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
 
         // Set the adapter on the {@link ListView}.
         newsListView.setAdapter(adapter);
+
+        //setHasOptionsMenu(true);
 
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -212,4 +226,73 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     public void onRefresh() {
         getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
     }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+
+        inflater.inflate(R.menu.main_search, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+
+            queryTextListener = new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    Log.i("onQueryTextChange", newText);
+                    adapter.getFilter().filter(newText);
+                    return true;
+                }
+
+
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Log.i("onQueryTextSubmit", query);
+                    adapter.getFilter().filter(query);
+                    if(adapter.getCount()==0){
+                        getNoResult();
+                    }
+                    return true;
+                }
+
+            };
+            searchView.setOnQueryTextListener(queryTextListener);
+            searchView.setQueryHint("Search for News");
+
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    private void getNoResult(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
+        builder.setMessage("No Match. Please try again");
+
+        // Create and show the AlertDialog
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                alertDialog.dismiss();
+                timer.cancel(); // This will cancel the timer of the system
+            }
+        }, 2000); // the timer will count 2 seconds....
+    }
+
 }
