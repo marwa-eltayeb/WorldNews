@@ -16,7 +16,7 @@
 - Notifications
 
 ## Screenshots
-| <img src="https://i.imgur.com/qU4scDA.png" width="250">  | <img src="https://i.imgur.com/qOvIh8N.png" width="250">  | 
+| <img src="https://i.imgur.com/A7YMbzA.png" width="250">  | <img src="https://i.imgur.com/oSCZEmv.png" width="250">  | 
 | ------------- | ------------- |
 | <img src="https://i.imgur.com/eYTqeFM.png" width="250">  | <img src="https://i.imgur.com/miaRu3r.png" width="250">  |
 | <img src="https://i.imgur.com/4oO0QKm.png" width="250">  | <img src="https://i.imgur.com/2FMFQAs.png" width="250">  |
