@@ -175,8 +175,7 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
         return new NewsLoader(getContext(), uriBuilder.toString() , Link.CULTUREJ);
 
     }
-
-
+    
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
 
