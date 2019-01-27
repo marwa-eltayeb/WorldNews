@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -68,6 +69,8 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
 
+    ListView newsListView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +82,7 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
 
         // Find a reference to the {@link ListView} in the layout.
-        ListView newsListView = (ListView) rootView.findViewById(R.id.newsList);
+        newsListView = (ListView) rootView.findViewById(R.id.newsList);
 
         // Find a reference to an empty TextView
         emptyStateTextView = (TextView) rootView.findViewById(R.id.empty_view);
@@ -131,11 +134,25 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                                     @Override
                                     public void run() {
                                         //swipeRefreshLayout.setRefreshing(true);
-                                        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, loader);
+                                        //getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, loader);
                                         adapter.notifyDataSetChanged();
                                     }
                                 }
         );
+
+        newsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition =
+                        (newsListView == null || newsListView.getChildCount() == 0)
+                                ? 0
+                                : newsListView.getChildAt(0).getTop();
+                swipeRefreshLayout.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
+            }
+        });
 
         return rootView;
     }
@@ -144,8 +161,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
     // onCreateLoader instantiates and returns a new Loader for the given ID
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        // First, Show loading indicator.
-        loadingIndicator.setVisibility(View.VISIBLE);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
