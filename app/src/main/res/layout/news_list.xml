@@ -29,8 +29,6 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:visibility="invisible" />
 
-        <!--android:text="@string/no_news"-->
-
         <!-- Loading indicator is only shown before the first load -->
         <ProgressBar
             android:id="@+id/loading_indicator"
