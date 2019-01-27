@@ -208,7 +208,7 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
         // Loader reset, so we can clear out our existing data.
         adapter.clear();
     }
-    
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
