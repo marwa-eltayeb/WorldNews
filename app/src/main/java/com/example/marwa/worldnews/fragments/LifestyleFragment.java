@@ -96,7 +96,7 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter.
-            loaderManager.initLoader(Link.NEWS_LOADER_ID, null, this);
+            loaderManager.initLoader(Link.LIFE_AND_STYLE_LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
             emptyStateTextView.setText(R.string.no_internet_connection);
@@ -203,14 +203,14 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
      */
     @Override
     public void onRefresh() {
-        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+        getLoaderManager().restartLoader(Link.LIFE_AND_STYLE_LOADER_ID, null, this);
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
-            getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+            getLoaderManager().restartLoader(Link.LIFE_AND_STYLE_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
             Toast.makeText(getContext(), "Life", Toast.LENGTH_SHORT).show();
         }

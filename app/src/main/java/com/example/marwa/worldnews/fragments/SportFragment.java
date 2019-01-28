@@ -95,7 +95,7 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
             LoaderManager loaderManager = getLoaderManager();
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter.
-            loaderManager.initLoader(Link.NEWS_LOADER_ID, null, this);
+            loaderManager.initLoader(Link.SPORT_LOADER_ID, null, this);
         } else {
             // Update empty state with no connection error message
             emptyStateTextView.setText(R.string.no_internet_connection);
@@ -201,14 +201,14 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
      */
     @Override
     public void onRefresh() {
-        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+        getLoaderManager().restartLoader(Link.SPORT_LOADER_ID, null, this);
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
-            getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+            getLoaderManager().restartLoader(Link.SPORT_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
             Toast.makeText(getContext(), "Sport", Toast.LENGTH_SHORT).show();
         }
