@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +20,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LifestyleFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener {
+public class LifestyleFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener ,SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     /**
@@ -108,21 +108,8 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
                     Link.LIFE_AND_STYLE_LOADER_ID, null, new NewsCursorLoader(getContext(),Link.LIFE_AND_STYLEJ, newsCursorAdapter));
+            loadingIndicator.setVisibility(View.GONE);
         }
-
-        /**
-         * Showing Swipe Refresh animation on activity create
-         * As animation won't start on onCreate, post runnable is used
-         */
-        swipeRefreshLayout.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        //swipeRefreshLayout.setRefreshing(true);
-                                        //getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, loader);
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                }
-        );
 
         newsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -137,6 +124,10 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
                 swipeRefreshLayout.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
             }
         });
+
+        // Register the listener
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .registerOnSharedPreferenceChangeListener(this);
 
         return rootView;
     }
@@ -207,20 +198,30 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
         adapter.clear();
     }
 
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //Restart the loader when we get back to the MainActivity
-        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
-    }
-
     /**
      * This method is called when swipe refresh is pulled down
      */
     @Override
     public void onRefresh() {
         getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
+            getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(getContext(), "Life", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks.
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
 }

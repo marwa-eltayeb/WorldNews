@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
@@ -28,6 +27,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
@@ -45,7 +45,7 @@ import java.util.TimerTask;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener {
+public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener,SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     /**
@@ -98,9 +98,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         // Set the adapter on the {@link ListView}.
         newsListView.setAdapter(adapter);
 
-        //setHasOptionsMenu(true);
-
-
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -124,21 +121,8 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
             // Show the stored data
             getActivity().getSupportLoaderManager().initLoader(
                     Link.NEWS_LOADER_ID, null, new NewsCursorLoader(getContext(),Link.NEWSJ, newsCursorAdapter));
+            loadingIndicator.setVisibility(View.GONE);
         }
-
-        /**
-         * Showing Swipe Refresh animation on activity create
-         * As animation won't start on onCreate, post runnable is used
-         */
-        swipeRefreshLayout.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        //swipeRefreshLayout.setRefreshing(true);
-                                        //getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, loader);
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                }
-        );
 
         newsListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -153,6 +137,10 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                 swipeRefreshLayout.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
             }
         });
+
+        // Register the listener
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .registerOnSharedPreferenceChangeListener(this);
 
         return rootView;
     }
@@ -225,21 +213,13 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         adapter.clear();
     }
 
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //Restart the loader when we get back to the MainActivity
-        getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
-    }
-
-
     /**
      * This method is called when swipe refresh is pulled down
      */
     @Override
     public void onRefresh() {
         getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -310,4 +290,20 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         }, 2000); // the timer will count 2 seconds....
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
+            getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Unregister MainActivity as an OnPreferenceChangedListener to avoid any memory leaks.
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
 }
