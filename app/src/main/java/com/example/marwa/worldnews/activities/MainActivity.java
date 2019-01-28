@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         tabLayout.setupWithViewPager(viewPager);
 
 
-        // Show of turn off notifications
+        // Show or turn off notifications
         setupNotification();
 
         // If we want to change the mode after rotation.
