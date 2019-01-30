@@ -29,7 +29,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;

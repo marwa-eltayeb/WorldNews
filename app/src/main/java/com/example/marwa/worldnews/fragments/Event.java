@@ -1,4 +1,4 @@
-package com.example.marwa.worldnews;
+package com.example.marwa.worldnews.fragments;
 
 /**
  * Created by Marwa on 1/30/2019.
