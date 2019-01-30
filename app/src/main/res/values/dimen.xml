@@ -5,7 +5,7 @@
     <!-- Text size of the title -->
     <dimen name="textSizeOfTitle">18sp</dimen>
     <!-- Text size of other elements -->
-    <dimen name="textSize">14sp</dimen>
+    <dimen name="textSize">13sp</dimen>
     <!-- Text size of description -->
     <dimen name="textSizeOfDescription">16sp</dimen>
     <!-- Margin in the top -->

@@ -83,9 +83,9 @@
 
             <ImageButton
                 android:id="@+id/share"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
                 android:background="?android:selectableItemBackground"
                 android:contentDescription="@string/sharenewsstory"
                 android:src="@drawable/share_black" />
