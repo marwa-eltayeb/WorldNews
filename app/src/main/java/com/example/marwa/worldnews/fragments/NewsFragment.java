@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
@@ -137,6 +138,12 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
                 swipeRefreshLayout.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
             }
         });
+
+        if(Event.isNewsFragmentChanged){
+            getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
+            Event.isNewsFragmentChanged = false;
+            Toast.makeText(getContext(), "News is activated", Toast.LENGTH_SHORT).show();
+        }
 
         // Register the listener
         PreferenceManager.getDefaultSharedPreferences(getContext())
@@ -295,7 +302,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
             getLoaderManager().restartLoader(Link.NEWS_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
         }
     }
 
