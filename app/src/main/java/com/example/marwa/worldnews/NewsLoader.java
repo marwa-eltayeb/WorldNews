@@ -6,6 +6,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
 import com.example.marwa.worldnews.data.NewsContract.NewsEntry;
+import com.example.marwa.worldnews.utility.QueryUtils;
 
 import java.util.ArrayList;
 import java.util.List;

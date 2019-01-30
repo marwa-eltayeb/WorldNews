@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.R;
-import com.example.marwa.worldnews.Utility;
+import com.example.marwa.worldnews.utility.Utility;
 import com.example.marwa.worldnews.activities.WebViewActivity;
 import com.squareup.picasso.Picasso;
 

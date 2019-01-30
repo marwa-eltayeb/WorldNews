@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marwa.worldnews.R;
-import com.example.marwa.worldnews.Utility;
+import com.example.marwa.worldnews.utility.Utility;
 import com.example.marwa.worldnews.data.NewsContract.NewsEntry;
 
 import java.util.Timer;

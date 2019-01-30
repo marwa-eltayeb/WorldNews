@@ -1,4 +1,4 @@
-package com.example.marwa.worldnews;
+package com.example.marwa.worldnews.utility;
 
 import android.content.Context;
 import android.content.Intent;

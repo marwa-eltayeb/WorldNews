@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.example.marwa.worldnews.R;
-import com.example.marwa.worldnews.Utility;
+import com.example.marwa.worldnews.utility.Utility;
 
 public class WebViewActivity extends AppCompatActivity {
 
