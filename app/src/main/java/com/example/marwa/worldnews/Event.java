@@ -6,12 +6,16 @@ package com.example.marwa.worldnews;
 
 public class Event {
 
-    public static boolean isNewsFragmentChanged = false;
-    public static boolean isSportFragmentChanged = false;
-    public static boolean isCultureFragmentChanged = false;
-    public static boolean isLifeAndStyleFragmentChanged = false;
-    public static boolean isTechnologyFragmentChanged = false;
+    // Add boolean variable for checking
+    protected static boolean isNewsFragmentChanged = false;
+    protected static boolean isSportFragmentChanged = false;
+    protected static boolean isCultureFragmentChanged = false;
+    protected static boolean isLifeAndStyleFragmentChanged = false;
+    protected static boolean isTechnologyFragmentChanged = false;
 
+    /**
+     * If data is changed, turn variables to true
+     */
     public static void onDataChang(){
         isNewsFragmentChanged = true;
         isSportFragmentChanged = true;
