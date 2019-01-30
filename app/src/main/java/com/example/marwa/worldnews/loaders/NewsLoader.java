@@ -1,4 +1,4 @@
-package com.example.marwa.worldnews;
+package com.example.marwa.worldnews.loaders;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
 import com.example.marwa.worldnews.data.NewsContract.NewsEntry;
+import com.example.marwa.worldnews.model.News;
 import com.example.marwa.worldnews.utility.QueryUtils;
 
 import java.util.ArrayList;

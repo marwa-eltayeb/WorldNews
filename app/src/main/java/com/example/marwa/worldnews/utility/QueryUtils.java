@@ -3,7 +3,7 @@ package com.example.marwa.worldnews.utility;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.marwa.worldnews.News;
+import com.example.marwa.worldnews.model.News;
 
 import org.json.JSONArray;
 import org.json.JSONException;

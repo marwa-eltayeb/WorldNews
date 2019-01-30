@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.marwa.worldnews.News;
+import com.example.marwa.worldnews.model.News;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.utility.Utility;
 import com.example.marwa.worldnews.activities.WebViewActivity;

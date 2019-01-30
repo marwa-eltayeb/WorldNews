@@ -29,12 +29,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.marwa.worldnews.News;
-import com.example.marwa.worldnews.NewsLoader;
+import com.example.marwa.worldnews.model.News;
+import com.example.marwa.worldnews.loaders.NewsLoader;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
-import com.example.marwa.worldnews.data.NewsCursorLoader;
+import com.example.marwa.worldnews.loaders.NewsCursorLoader;
 
 import java.util.ArrayList;
 import java.util.List;

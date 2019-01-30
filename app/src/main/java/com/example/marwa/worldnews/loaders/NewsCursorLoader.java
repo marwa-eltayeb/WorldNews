@@ -1,4 +1,4 @@
-package com.example.marwa.worldnews.data;
+package com.example.marwa.worldnews.loaders;
 
 import android.content.Context;
 import android.database.Cursor;

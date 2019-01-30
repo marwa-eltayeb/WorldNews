@@ -1,4 +1,4 @@
-package com.example.marwa.worldnews;
+package com.example.marwa.worldnews.model;
 
 import android.text.Html;
 
