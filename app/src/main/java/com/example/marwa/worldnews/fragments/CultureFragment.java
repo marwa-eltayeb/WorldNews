@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
@@ -125,6 +126,12 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
             }
         });
 
+        if(Event.isCultureFragmentChanged){
+            getLoaderManager().restartLoader(Link.CULTURE_LOADER_ID, null, this);
+            Event.isCultureFragmentChanged = false;
+            Toast.makeText(getContext(), "Culture is activated", Toast.LENGTH_SHORT).show();
+        }
+
         // Register the listener
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .registerOnSharedPreferenceChangeListener(this);
@@ -214,7 +221,6 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
             getLoaderManager().restartLoader(Link.CULTURE_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "Culture", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -225,4 +231,7 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
+
+
+
 }
