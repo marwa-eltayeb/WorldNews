@@ -11,7 +11,7 @@ public class Event {
     public static boolean isCultureFragmentChanged = false;
     public static boolean isLifeAndStyleFragmentChanged = false;
     public static boolean isTechnologyFragmentChanged = false;
-    
+
     public static void onDataChang(){
         isNewsFragmentChanged = true;
         isSportFragmentChanged = true;
