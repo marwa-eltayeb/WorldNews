@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
@@ -125,6 +126,12 @@ public class TechnologyFragment extends Fragment implements LoaderManager.Loader
             }
         });
 
+        if(Event.isTechnologyFragmentChanged){
+            getLoaderManager().restartLoader(Link.TECHNOLOGY_LOADER_ID, null, this);
+            Event.isTechnologyFragmentChanged = false;
+            Toast.makeText(getContext(), "Tech is activated", Toast.LENGTH_SHORT).show();
+        }
+
         // Register the listener
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .registerOnSharedPreferenceChangeListener(this);
@@ -211,7 +218,6 @@ public class TechnologyFragment extends Fragment implements LoaderManager.Loader
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
             getLoaderManager().restartLoader(Link.TECHNOLOGY_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "Tech", Toast.LENGTH_SHORT).show();
         }
     }
 
