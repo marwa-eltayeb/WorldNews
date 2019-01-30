@@ -20,14 +20,13 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.marwa.worldnews.model.News;
-import com.example.marwa.worldnews.loaders.NewsLoader;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
 import com.example.marwa.worldnews.loaders.NewsCursorLoader;
+import com.example.marwa.worldnews.loaders.NewsLoader;
+import com.example.marwa.worldnews.model.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,10 +123,10 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
             }
         });
 
+        // If data is changed, restart the loader.
         if(Event.isSportFragmentChanged){
             getLoaderManager().restartLoader(Link.SPORT_LOADER_ID, null, this);
             Event.isSportFragmentChanged = false;
-            Toast.makeText(getContext(), "Sport is activated", Toast.LENGTH_SHORT).show();
         }
 
         // Register the listener

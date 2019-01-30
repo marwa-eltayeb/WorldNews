@@ -20,14 +20,13 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.marwa.worldnews.model.News;
-import com.example.marwa.worldnews.loaders.NewsLoader;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
 import com.example.marwa.worldnews.loaders.NewsCursorLoader;
+import com.example.marwa.worldnews.loaders.NewsLoader;
+import com.example.marwa.worldnews.model.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,10 +124,10 @@ public class CultureFragment extends Fragment implements LoaderManager.LoaderCal
             }
         });
 
+        // If data is changed, restart the loader.
         if(Event.isCultureFragmentChanged){
             getLoaderManager().restartLoader(Link.CULTURE_LOADER_ID, null, this);
             Event.isCultureFragmentChanged = false;
-            Toast.makeText(getContext(), "Culture is activated", Toast.LENGTH_SHORT).show();
         }
 
         // Register the listener

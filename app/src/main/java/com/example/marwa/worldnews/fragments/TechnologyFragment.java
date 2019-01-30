@@ -20,14 +20,13 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.marwa.worldnews.model.News;
-import com.example.marwa.worldnews.loaders.NewsLoader;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.NewsAdapter;
 import com.example.marwa.worldnews.adapters.NewsCursorAdapter;
 import com.example.marwa.worldnews.loaders.NewsCursorLoader;
+import com.example.marwa.worldnews.loaders.NewsLoader;
+import com.example.marwa.worldnews.model.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,10 +124,10 @@ public class TechnologyFragment extends Fragment implements LoaderManager.Loader
             }
         });
 
+        // If data is changed, restart the loader.
         if(Event.isTechnologyFragmentChanged){
             getLoaderManager().restartLoader(Link.TECHNOLOGY_LOADER_ID, null, this);
             Event.isTechnologyFragmentChanged = false;
-            Toast.makeText(getContext(), "Tech is activated", Toast.LENGTH_SHORT).show();
         }
 
         // Register the listener
