@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
@@ -124,6 +125,12 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
             }
         });
 
+        if(Event.isSportFragmentChanged){
+            getLoaderManager().restartLoader(Link.SPORT_LOADER_ID, null, this);
+            Event.isSportFragmentChanged = false;
+            Toast.makeText(getContext(), "Sport is activated", Toast.LENGTH_SHORT).show();
+        }
+
         // Register the listener
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .registerOnSharedPreferenceChangeListener(this);
@@ -210,7 +217,6 @@ public class SportFragment extends Fragment implements LoaderManager.LoaderCallb
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
             getLoaderManager().restartLoader(Link.SPORT_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "Sport", Toast.LENGTH_SHORT).show();
         }
     }
 
