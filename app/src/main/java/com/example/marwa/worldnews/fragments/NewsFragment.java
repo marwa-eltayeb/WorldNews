@@ -47,8 +47,7 @@ import java.util.TimerTask;
  * A simple {@link Fragment} subclass.
  */
 public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener,SharedPreferences.OnSharedPreferenceChangeListener {
-
-
+    
     /**
      * Adapter for the list of news stories.
      */
@@ -152,7 +151,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         return rootView;
     }
 
-
     // onCreateLoader instantiates and returns a new Loader for the given ID
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
@@ -229,7 +227,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         adapter.notifyDataSetChanged();
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -278,7 +275,6 @@ public class NewsFragment extends Fragment implements LoaderManager.LoaderCallba
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
     private void getNoResult(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle);
