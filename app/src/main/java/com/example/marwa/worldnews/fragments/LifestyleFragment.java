@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.News;
 import com.example.marwa.worldnews.NewsLoader;
 import com.example.marwa.worldnews.R;
@@ -125,6 +126,12 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
             }
         });
 
+        if(Event.isLifeAndStyleFragmentChanged){
+            getLoaderManager().restartLoader(Link.LIFE_AND_STYLE_LOADER_ID, null, this);
+            Event.isLifeAndStyleFragmentChanged = false;
+            Toast.makeText(getContext(), "Life is activated", Toast.LENGTH_SHORT).show();
+        }
+
         // Register the listener
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .registerOnSharedPreferenceChangeListener(this);
@@ -212,7 +219,6 @@ public class LifestyleFragment extends Fragment implements LoaderManager.LoaderC
         if (key.equals(getString(R.string.country_key))||key.equals(getString(R.string.date_key))) {
             getLoaderManager().restartLoader(Link.LIFE_AND_STYLE_LOADER_ID, null, this);
             adapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "Life", Toast.LENGTH_SHORT).show();
         }
     }
 
