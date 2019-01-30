@@ -47,7 +47,7 @@ import java.util.TimerTask;
  * A simple {@link Fragment} subclass.
  */
 public class NewsFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener,SharedPreferences.OnSharedPreferenceChangeListener {
-    
+
     /**
      * Adapter for the list of news stories.
      */
