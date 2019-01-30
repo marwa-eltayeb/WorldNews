@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import com.example.marwa.worldnews.Event;
 import com.example.marwa.worldnews.R;
 import com.example.marwa.worldnews.adapters.CategoryAdapter;
 import com.example.marwa.worldnews.service.ReminderUtilities;
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         if (key.equals(getString(R.string.notification_key))) {
             setupNotification();
         }
+        if (key.equals(getString(R.string.country_key)) || key.equals(getString(R.string.date_key))) {
+            Event.onDataChang();
+        }
     }
 
 
@@ -121,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
-
 
 
 }
