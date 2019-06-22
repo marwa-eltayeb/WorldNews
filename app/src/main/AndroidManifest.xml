@@ -16,9 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".activities.MainActivity"
-            android:launchMode="singleTop"></activity>
+        <activity android:name=".activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.LoginActivity"/>
+        <activity android:name=".activities.MainActivity" />
 
         <activity
             android:name=".activities.SettingsActivity"
@@ -46,15 +53,7 @@
                 android:value=".activities.MainActivity" />
         </activity>
 
-        <activity android:name=".activities.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!--This is required for immediate syncs -->
+        <!-- This is required for immediate syncs -->
         <service
             android:name=".service.NewsReminderService"
             android:exported="false" />
@@ -71,10 +70,10 @@
         <receiver android:name=".receiver.RebootBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
