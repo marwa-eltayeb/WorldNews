@@ -20,8 +20,10 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Declaring Twitter loginButton object
+    // Declaring Twitter loginButton object
     TwitterLoginButton loginButton;
+    // Check if user logged in before or not
+    static boolean loggedInBefore = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
             TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
             String username = session.getUserName();
             if(!username.isEmpty()){
+                // User logged in
+                loggedInBefore = true;
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
