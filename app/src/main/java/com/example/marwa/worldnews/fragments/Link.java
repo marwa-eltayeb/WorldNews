@@ -1,5 +1,7 @@
 package com.example.marwa.worldnews.fragments;
 
+import com.example.marwa.worldnews.BuildConfig;
+
 class Link {
 
     /**
@@ -29,7 +31,7 @@ class Link {
     final static String PARAM_SHOW_FIELDS = "show-fields";
     final static String AUTHOR = "contributor";
     final static String PARAM_API_KEY = "api-key";
-    final static String KEY = "37b5b5aa-d7fb-4219-b589-3e1af665cfff";
+    final static String KEY =  BuildConfig.API_KEY;
 
     // Sections
     final static String NEWS = "world";

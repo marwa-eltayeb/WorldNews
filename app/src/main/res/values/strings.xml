@@ -79,6 +79,7 @@
     <string name="charging_reminder_notification_title">Breaking News</string>
     <string name="charging_reminder_notification_body">The latest top news stories in world news. Read them as they happen around the world. Enjoy!</string>
     <string name="search">Search</string>
+    <string name="world_news">World News</string>
 
 </resources>
 
